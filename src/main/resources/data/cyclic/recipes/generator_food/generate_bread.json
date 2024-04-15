@@ -1,0 +1,6 @@
+{
+	"type": "cyclic:generator_food",
+	"fuel": {
+		"item": "minecraft:bread"
+	}
+}
