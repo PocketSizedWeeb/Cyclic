@@ -10,6 +10,7 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -17,6 +18,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.RegistryManager;
+import net.minecraftforge.registries.ForgeRegistries.Keys;
 
 public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 
@@ -24,6 +27,16 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 	private NonNullList<Ingredient> ingredients = NonNullList.create();
 	private ItemStack input;
 	private float foodVal;
+	
+	static
+	{
+		for(Item item : RegistryManager.ACTIVE.getRegistry(Keys.ITEMS))
+		{
+			ItemStack stack = new ItemStack(item);
+			
+			new RecipeGeneratorFood(new ResourceLocation(ModCyclic.MODID), stack);
+		}
+	}
 	
 	public RecipeGeneratorFood(ResourceLocation id, ItemStack stack) {
 		this.id = id;
