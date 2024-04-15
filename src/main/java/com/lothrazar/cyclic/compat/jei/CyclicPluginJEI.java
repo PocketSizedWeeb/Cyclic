@@ -7,6 +7,7 @@ import com.lothrazar.cyclic.block.crusher.ContainerCrusher;
 import com.lothrazar.cyclic.block.crusher.ScreenCrusher;
 import com.lothrazar.cyclic.block.generatorfluid.ScreenGeneratorFluid;
 import com.lothrazar.cyclic.block.generatorfood.ContainerGeneratorFood;
+import com.lothrazar.cyclic.block.generatorfood.RecipeGeneratorFood;
 import com.lothrazar.cyclic.block.generatorfood.ScreenGeneratorFood;
 import com.lothrazar.cyclic.block.generatoritem.ContainerGeneratorDrops;
 import com.lothrazar.cyclic.block.generatoritem.ScreenGeneratorDrops;
@@ -99,6 +100,7 @@ public class CyclicPluginJEI implements IModPlugin {
     registry.addRecipes(CrusherRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(CyclicRecipeType.CRUSHER.get())));
     registry.addRecipes(PackagerRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(RecipeType.CRAFTING)));
     registry.addRecipes(GenfoodRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(CyclicRecipeType.GENERATOR_FOOD.get())));
+    registry.addRecipes(GenfoodRecipeCategory.TYPE, RecipeGeneratorFood.RECIPES);
     for (RegistryObject<Item> item : ItemRegistry.ITEMS.getEntries()) {
       ItemStack st = new ItemStack(item.get());
       if (!st.isEmpty() && (st.getItem() instanceof BucketItem == false)) {
