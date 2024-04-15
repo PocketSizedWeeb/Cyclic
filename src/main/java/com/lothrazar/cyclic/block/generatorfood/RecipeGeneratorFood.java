@@ -1,5 +1,8 @@
 package com.lothrazar.cyclic.block.generatorfood;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
@@ -28,13 +31,18 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 	private ItemStack input;
 	private float foodVal;
 	
+	public static List<RecipeGeneratorFood> RECIPES = new ArrayList<>();
+	
 	static
 	{
 		for(Item item : RegistryManager.ACTIVE.getRegistry(Keys.ITEMS))
 		{
 			ItemStack stack = new ItemStack(item);
-			
-			new RecipeGeneratorFood(new ResourceLocation(ModCyclic.MODID), stack);
+			if(stack.isEdible())
+			{
+				new RecipeGeneratorFood(new ResourceLocation(ModCyclic.MODID), stack);
+				System.out.print(item.getDescriptionId() + "\n");
+			}
 		}
 	}
 	
@@ -43,6 +51,7 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 	    ingredients.add(Ingredient.of(stack));
 	    this.input = stack;
 	    this.foodVal = stack.getItem().getFoodProperties(stack, null).getNutrition() + stack.getItem().getFoodProperties(stack, null).getSaturationModifier();
+	    RECIPES.add(this);
 	}
 	
 	@Override
