@@ -105,6 +105,7 @@ public class CyclicPluginJEI implements IModPlugin {
         registry.addIngredientInfo(st, VanillaTypes.ITEM_STACK, Component.translatable(item.get().getDescriptionId() + ".guide"));
       }
     }
+    
   }
 
   @Override
