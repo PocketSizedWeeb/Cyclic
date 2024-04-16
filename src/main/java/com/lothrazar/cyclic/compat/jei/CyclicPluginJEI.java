@@ -9,6 +9,9 @@ import com.lothrazar.cyclic.block.generatorfluid.ScreenGeneratorFluid;
 import com.lothrazar.cyclic.block.generatorfood.ContainerGeneratorFood;
 import com.lothrazar.cyclic.block.generatorfood.RecipeGeneratorFood;
 import com.lothrazar.cyclic.block.generatorfood.ScreenGeneratorFood;
+import com.lothrazar.cyclic.block.generatorfuel.ContainerGeneratorFuel;
+import com.lothrazar.cyclic.block.generatorfuel.RecipeGeneratorFuel;
+import com.lothrazar.cyclic.block.generatorfuel.ScreenGeneratorFuel;
 import com.lothrazar.cyclic.block.generatoritem.ContainerGeneratorDrops;
 import com.lothrazar.cyclic.block.generatoritem.ScreenGeneratorDrops;
 import com.lothrazar.cyclic.block.melter.ContainerMelter;
@@ -70,6 +73,7 @@ public class CyclicPluginJEI implements IModPlugin {
     registry.addRecipeCategories(new PackagerRecipeCategory(guiHelper));
     registry.addRecipeCategories(new CrusherRecipeCategory(guiHelper));
     registry.addRecipeCategories(new GenfoodRecipeCategory(guiHelper));
+    registry.addRecipeCategories(new GenfuelRecipeCategory(guiHelper));
   }
 
   @Override
@@ -85,6 +89,7 @@ public class CyclicPluginJEI implements IModPlugin {
     registration.addRecipeCatalyst(new ItemStack(BlockRegistry.GENERATOR_FLUID.get()), GenfluidRecipeCategory.TYPE);
     registration.addRecipeCatalyst(new ItemStack(BlockRegistry.CRUSHER.get()), CrusherRecipeCategory.TYPE);
     registration.addRecipeCatalyst(new ItemStack(BlockRegistry.GENERATOR_FOOD.get()), GenfoodRecipeCategory.TYPE);
+    registration.addRecipeCatalyst(new ItemStack(BlockRegistry.GENERATOR_FUEL.get()), GenfuelRecipeCategory.TYPE);
   }
 
   @Override
@@ -101,6 +106,7 @@ public class CyclicPluginJEI implements IModPlugin {
     registry.addRecipes(PackagerRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(RecipeType.CRAFTING)));
     registry.addRecipes(GenfoodRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(CyclicRecipeType.GENERATOR_FOOD.get())));
     registry.addRecipes(GenfoodRecipeCategory.TYPE, RecipeGeneratorFood.RECIPES);
+    registry.addRecipes(GenfuelRecipeCategory.TYPE, RecipeGeneratorFuel.RECIPES);
     for (RegistryObject<Item> item : ItemRegistry.ITEMS.getEntries()) {
       ItemStack st = new ItemStack(item.get());
       if (!st.isEmpty() && (st.getItem() instanceof BucketItem == false)) {
@@ -125,14 +131,17 @@ public class CyclicPluginJEI implements IModPlugin {
         28, 6,
         120, 10, GenfluidRecipeCategory.TYPE);
     registry.addRecipeClickArea(ScreenPackager.class,
-        60, 4,
+        60, 6,
         52, 12, PackagerRecipeCategory.TYPE);
     registry.addRecipeClickArea(ScreenCrusher.class,
         76, 38,
         20, 20, CrusherRecipeCategory.TYPE);
     registry.addRecipeClickArea(ScreenGeneratorFood.class,
-            74, 58,
-            20, 20, GenfoodRecipeCategory.TYPE);
+    	74, 58,
+    	20, 20, GenfoodRecipeCategory.TYPE);
+    registry.addRecipeClickArea(ScreenGeneratorFuel.class,
+        28, 6,
+        120, 10, GenfuelRecipeCategory.TYPE);
   }
 
   @Override
@@ -162,7 +171,10 @@ public class CyclicPluginJEI implements IModPlugin {
         0, 1, //recipeSLotStart, recipeSlotCount
         1, PLAYER_INV_SIZE); // inventorySlotStart, inventorySlotCount 
     registry.addRecipeTransferHandler(ContainerGeneratorFood.class, MenuTypeRegistry.GENERATOR_FOOD.get(), GenfoodRecipeCategory.TYPE,
-            0, 1, //recipeSLotStart, recipeSlotCount
-            1, PLAYER_INV_SIZE);
+        0, 1, //recipeSLotStart, recipeSlotCount
+        1, PLAYER_INV_SIZE);
+    registry.addRecipeTransferHandler(ContainerGeneratorFuel.class, MenuTypeRegistry.GENERATOR_FUEL.get(), GenfuelRecipeCategory.TYPE,
+    	0, 1, //recipeSLotStart, recipeSlotCount
+    	1, PLAYER_INV_SIZE);
   }
 }

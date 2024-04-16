@@ -40,7 +40,7 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 			ItemStack stack = new ItemStack(item);
 			if(stack.isEdible())
 			{
-				new RecipeGeneratorFood(new ResourceLocation(ModCyclic.MODID), stack);
+				new RecipeGeneratorFood(new ResourceLocation(ModCyclic.MODID + ":generator_food/" + item.getDescriptionId()), stack);
 				System.out.print(item.getDescriptionId() + "\n");
 			}
 		}
@@ -105,10 +105,6 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 	public ResourceLocation getId() {
 		return id;
 	}
-
-	public Ingredient at(int slot) {
-	    return ingredients.get(slot);
-	  }
 	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
@@ -120,7 +116,7 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 		return CyclicRecipeType.GENERATOR_FOOD.get();
 	}
 
-	public ItemStack getInput() {
+	public ItemStack getFuel() {
 		return this.input;
 	}
 	

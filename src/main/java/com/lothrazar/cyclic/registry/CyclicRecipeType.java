@@ -6,6 +6,7 @@ import com.lothrazar.cyclic.block.generatorfluid.RecipeGeneratorFluid;
 import com.lothrazar.cyclic.block.generatorfluid.RecipeGeneratorFluid.SerializeGenerateFluid;
 import com.lothrazar.cyclic.block.generatorfood.RecipeGeneratorFood;
 import com.lothrazar.cyclic.block.generatorfood.RecipeGeneratorFood.SerializeGenerateFood;
+import com.lothrazar.cyclic.block.generatorfuel.RecipeGeneratorFuel;
 import com.lothrazar.cyclic.block.generatoritem.RecipeGeneratorItem;
 import com.lothrazar.cyclic.block.melter.RecipeMelter;
 import com.lothrazar.cyclic.block.melter.RecipeMelter.SerializeMelter;
@@ -40,4 +41,6 @@ public class CyclicRecipeType {
   //
   public static final RegistryObject<RecipeType<RecipeGeneratorFood>> GENERATOR_FOOD = RECIPE_TYPES.register("generator_food", () -> new RecipeType<RecipeGeneratorFood>() {});
   public static final RegistryObject<SerializeGenerateFood> GENERATOR_FOOD_S = RECIPE_SERIALIZERS.register("generator_food", () -> new SerializeGenerateFood());
+  
+  public static final RegistryObject<RecipeType<RecipeGeneratorFuel>> GENERATOR_FUEL = RECIPE_TYPES.register("generator_fuel", () -> new RecipeType<RecipeGeneratorFuel>() {});
 }
