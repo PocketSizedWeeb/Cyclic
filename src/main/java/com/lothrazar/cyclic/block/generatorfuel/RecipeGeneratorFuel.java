@@ -41,31 +41,26 @@ public class RecipeGeneratorFuel implements Recipe<TileGeneratorFuel> {
 	
 	@Override
 	public boolean matches(TileGeneratorFuel p_44002_, Level p_44003_) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public ItemStack assemble(TileGeneratorFuel p_44001_, RegistryAccess p_267165_) {
-		// TODO Auto-generated method stub
 		return ItemStack.EMPTY;
 	}
 
 	@Override
 	public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public ItemStack getResultItem(RegistryAccess p_267052_) {
-		// TODO Auto-generated method stub
 		return ItemStack.EMPTY;
 	}
 
 	@Override
 	public ResourceLocation getId() {
-		// TODO Auto-generated method stub
 		return id;
 	}
 
