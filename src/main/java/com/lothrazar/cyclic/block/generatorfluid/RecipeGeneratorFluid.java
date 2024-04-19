@@ -1,27 +1,29 @@
 package com.lothrazar.cyclic.block.generatorfluid;
 
+import java.util.List;
+
 import com.google.gson.JsonObject;
 import com.lothrazar.cyclic.ModCyclic;
 import com.lothrazar.cyclic.registry.CyclicRecipeType;
 import com.lothrazar.library.recipe.ingredient.EnergyIngredient;
 import com.lothrazar.library.recipe.ingredient.FluidTagIngredient;
 import com.lothrazar.library.util.RecipeUtil;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class RecipeGeneratorFluid implements Recipe<TileGeneratorFluid> {
 
   private final ResourceLocation id;
-  private NonNullList<Ingredient> ingredients = NonNullList.create();
   public final FluidTagIngredient fluidIng;
   private final EnergyIngredient energy;
 
@@ -58,7 +60,8 @@ public class RecipeGeneratorFluid implements Recipe<TileGeneratorFluid> {
 
   //  @Override
   public FluidStack getRecipeFluid() {
-    return fluidIng.getFluidStack();
+	System.out.print("[Recipe] " + this.fluidIng.getFluidStack().getDisplayName() + "\n");
+    return this.fluidIng.getFluidStack();
   }
 
   @Override
@@ -72,27 +75,12 @@ public class RecipeGeneratorFluid implements Recipe<TileGeneratorFluid> {
     }
   }
 
-  public boolean matches(ItemStack current, Ingredient ing) {
-    if (ing == Ingredient.EMPTY) {
-      //it must be empty
-      return current.isEmpty();
-    }
-    if (current.isEmpty()) {
-      return ing == Ingredient.EMPTY;
-    }
-    return ing.test(current);
-  }
-
-  public ItemStack[] ingredientAt(int slot) {
-    Ingredient ing = ingredients.get(slot);
-    return ing.getItems();
-  }
-
-  @Override
-  public NonNullList<Ingredient> getIngredients() {
-    return ingredients;
-  }
-
+  public List<Fluid> getFluidsFromTag() {
+		TagKey<Fluid> tag = ForgeRegistries.FLUIDS.tags().createTagKey(new ResourceLocation(this.fluidIng.getTag()));
+		List<Fluid> list = ForgeRegistries.FLUIDS.tags().getTag(tag).stream().toList();
+		return list;
+	  }
+  
   @Override
   public RecipeType<?> getType() {
     return CyclicRecipeType.GENERATOR_FLUID.get();
