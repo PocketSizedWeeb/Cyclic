@@ -5,12 +5,10 @@ import java.util.List;
 
 import com.lothrazar.cyclic.ModCyclic;
 import com.lothrazar.cyclic.registry.CyclicRecipeType;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -92,4 +90,5 @@ public class RecipeGeneratorFood implements Recipe<TileGeneratorFood> {
 	public int getEnergyTotal() {
 	  return (int) (this.getRfPertick() * this.getTicks() * this.foodVal);
 	}
+	
 }

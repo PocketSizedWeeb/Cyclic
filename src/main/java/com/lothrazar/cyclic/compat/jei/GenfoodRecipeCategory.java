@@ -63,8 +63,7 @@ public class GenfoodRecipeCategory implements IRecipeCategory<RecipeGeneratorFoo
 	
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, RecipeGeneratorFood recipe, IFocusGroup focuses) {
-		builder.addSlot(RecipeIngredientRole.INPUT, 6, 7).addItemStack(recipe.getFuel());
-		
+		builder.addSlot(RecipeIngredientRole.INPUT, 6, 7).addItemStack(recipe.getFuel());	
 	}
 
 
