@@ -140,6 +140,7 @@ public class TileCrafter extends TileBlockEntityCyclic implements MenuProvider {
     if (cap.getEnergyStored() < cost && cost > 0) {
       return;
     }
+    if(!checkInput(inputHandler)) return;
     if (timer < 0) {
       timer = 0;
     }
@@ -210,7 +211,42 @@ public class TileCrafter extends TileBlockEntityCyclic implements MenuProvider {
     }
     return test.isEmpty(); //empty means all of it was allowed to go in
   }
-
+  
+  private boolean checkInput(IItemHandler inv)
+  {
+	  IItemHandler gridHandler = this.gridCap.orElse(null);
+	  List<ItemStack> inputStacks = new ArrayList<ItemStack>();
+	  List<ItemStack> gridStacks = new ArrayList<ItemStack>();
+	  for(int i = 0; i < inv.getSlots(); i++)
+	  {
+		  inputStacks.add(inv.getStackInSlot(i).copy());
+	  }
+	  for(int i = 0; i < gridHandler.getSlots(); i++)
+	  {
+		  gridStacks.add(gridHandler.getStackInSlot(i).copy());
+	  }
+	  for(ItemStack stack : inputStacks)
+	  {
+		  List<ItemStack> lolbit = new ArrayList<ItemStack>();
+		  boolean match = false;
+		  for(ItemStack grid : gridStacks)
+		  {
+			  if(stack.getItem() == grid.getItem())
+			  {
+				  match = true;
+				  lolbit.add(grid);
+				  stack.shrink(1);
+			  }
+		  }
+		  if(match)
+		  {
+			  gridStacks.removeAll(lolbit);
+		  }
+	  }
+	  if(gridStacks.isEmpty()) return true;
+	  return false;
+  }
+  
   //TODO:? re-write this whole thing using ASSEMBLE?
   //big change
   //  for (int i = 0; i < 9; i++) {
