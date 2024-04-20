@@ -1,6 +1,0 @@
-{
-	"type": "cyclic:generator_food",
-	"input": {
-		"item": "minecraft:bread"
-	}
-}
