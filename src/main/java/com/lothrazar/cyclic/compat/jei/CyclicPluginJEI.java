@@ -104,7 +104,6 @@ public class CyclicPluginJEI implements IModPlugin {
     registry.addRecipes(GenfluidRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(CyclicRecipeType.GENERATOR_FLUID.get())));
     registry.addRecipes(CrusherRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(CyclicRecipeType.CRUSHER.get())));
     registry.addRecipes(PackagerRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(RecipeType.CRAFTING)));
-    registry.addRecipes(GenfoodRecipeCategory.TYPE, List.copyOf(rm.getAllRecipesFor(CyclicRecipeType.GENERATOR_FOOD.get())));
     registry.addRecipes(GenfoodRecipeCategory.TYPE, RecipeGeneratorFood.RECIPES);
     registry.addRecipes(GenfuelRecipeCategory.TYPE, RecipeGeneratorFuel.RECIPES);
     for (RegistryObject<Item> item : ItemRegistry.ITEMS.getEntries()) {

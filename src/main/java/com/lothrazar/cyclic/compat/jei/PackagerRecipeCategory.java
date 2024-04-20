@@ -25,14 +25,14 @@ public class PackagerRecipeCategory implements IRecipeCategory<CraftingRecipe> {
 
   private static final ResourceLocation ID = new ResourceLocation(ModCyclic.MODID, "packager");
   static final RecipeType<CraftingRecipe> TYPE = new RecipeType<>(ID, CraftingRecipe.class);
+  Minecraft instance;
   private IDrawable gui;
   private IDrawable icon;
-  private Minecraft instance;
 
   public PackagerRecipeCategory(IGuiHelper helper) {
-	this.instance = Minecraft.getInstance();
     gui = helper.drawableBuilder(new ResourceLocation(ModCyclic.MODID, "textures/jei/packager.png"), 0, 0, 118, 32).setTextureSize(118, 32).build();
     icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.PACKAGER.get()));
+    instance = Minecraft.getInstance();
   }
 
   @Override
