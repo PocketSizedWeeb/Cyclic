@@ -63,6 +63,12 @@ public class RecipeGeneratorFluid implements Recipe<TileGeneratorFluid> {
     return this.fluidIng.getFluidStack();
   }
 
+  public List<Fluid> getFluidsFromTag() {
+	TagKey<Fluid> tag = ForgeRegistries.FLUIDS.tags().createTagKey(new ResourceLocation(this.fluidIng.getTag()));
+	List<Fluid> list = ForgeRegistries.FLUIDS.tags().getTag(tag).stream().toList();
+	return list;
+  }
+  
   @Override
   public boolean matches(TileGeneratorFluid inv, Level worldIn) {
     try {
@@ -73,12 +79,6 @@ public class RecipeGeneratorFluid implements Recipe<TileGeneratorFluid> {
       return false;
     }
   }
-
-  public List<Fluid> getFluidsFromTag() {
-		TagKey<Fluid> tag = ForgeRegistries.FLUIDS.tags().createTagKey(new ResourceLocation(this.fluidIng.getTag()));
-		List<Fluid> list = ForgeRegistries.FLUIDS.tags().getTag(tag).stream().toList();
-		return list;
-	  }
   
   @Override
   public RecipeType<?> getType() {
