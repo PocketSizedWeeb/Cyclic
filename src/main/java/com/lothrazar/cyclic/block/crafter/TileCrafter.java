@@ -143,11 +143,6 @@ public class TileCrafter extends TileBlockEntityCyclic implements MenuProvider {
     if (timer < 0) {
       timer = 0;
     }
-    //timer phase
-    if (--timer > 0) {
-      return;
-    }
-    //timer is out, therefore processing 
     Recipe<CraftingContainer> lastValidRecipe = findMatchingRecipe(null);
     if (lastValidRecipe == null) {
       //reset 
