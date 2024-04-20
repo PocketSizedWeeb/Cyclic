@@ -212,7 +212,7 @@ public class TileCrafter extends TileBlockEntityCyclic implements MenuProvider {
     }
     return test.isEmpty(); //empty means all of it was allowed to go in
   }
-  
+
   // This could be done better, but it works so ¯\_(ツ)_/¯
   private boolean checkInput(IItemHandler inv) {
 	  IItemHandler gridHandler = this.gridCap.orElse(null);
