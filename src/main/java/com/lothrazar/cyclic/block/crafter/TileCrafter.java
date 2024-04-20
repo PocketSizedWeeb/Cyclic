@@ -140,10 +140,10 @@ public class TileCrafter extends TileBlockEntityCyclic implements MenuProvider {
     if (cap.getEnergyStored() < cost && cost > 0) {
       return;
     }
-    if(!checkInput(inputHandler)) return;
     if (timer < 0) {
       timer = 0;
     }
+    if(!checkInput(inputHandler)) return;
     //timer phase
     if (--timer > 0) {
       return;
