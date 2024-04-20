@@ -60,7 +60,6 @@ public class RecipeGeneratorFluid implements Recipe<TileGeneratorFluid> {
 
   //  @Override
   public FluidStack getRecipeFluid() {
-	System.out.print("[Recipe] " + this.fluidIng.getFluidStack().getDisplayName() + "\n");
     return this.fluidIng.getFluidStack();
   }
 
